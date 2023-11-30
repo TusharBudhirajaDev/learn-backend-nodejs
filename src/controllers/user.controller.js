@@ -37,7 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const avatarLocalPath = req.files?.avatar[0]?.path;
   const coverImageLocalPath = req.files?.coverImage[0]?.path;
   // validation for required field of avatar
-  if (!avatar) throw new ApiError(400, "Avatar is required");
+  if (!avatarLocalPath) throw new ApiError(400, "Avatar is required");
 
   // upload to cloudinary --> uploading a image to server, sometime takes time. so we have to await for it to be completed
   const avatar = await uploadOnCloudinary(avatarLocalPath);
