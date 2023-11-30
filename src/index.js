@@ -3,7 +3,7 @@ import Connection_DB from "./db/dbConnection.js";
 import { app } from "./app.js";
 
 dotenv.config({
-  path: "./env",
+  path: "./.env",
 });
 
 Connection_DB()

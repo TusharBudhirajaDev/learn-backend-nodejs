@@ -1,7 +1,7 @@
 import { asyncHandler } from "../utilis/asyncHandler.js";
 import { ApiError } from "../utilis/ApiError.js";
 import { User } from "../models/User.model.js";
-import { uploadOnCloudinary } from "../utilis/cloudinary.js";
+import uploadOnCloudinary from "../utilis/cloudinary.js";
 import { ApiResponse } from "../utilis/ApiResponse.js";
 
 const registerUser = asyncHandler(async (req, res) => {
@@ -25,7 +25,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "All field are required");
   }
 
-  const existedUser = User.findOne({
+  const existedUser = await User.findOne({
     $or: [{ username, email }],
   });
 
