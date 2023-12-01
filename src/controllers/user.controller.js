@@ -35,7 +35,14 @@ const registerUser = asyncHandler(async (req, res) => {
   // as we user middleware(multer) in the user router so its provide me the more options like req.files to catch the file uploaded
 
   const avatarLocalPath = req.files?.avatar[0]?.path;
-  const coverImageLocalPath = req.files?.coverImage[0]?.path;
+  let coverImageLocalPath;
+  if (
+    req.body &&
+    Array.isArray(req.body.coverImage) &&
+    req.body.coverImage.length > 0
+  ) {
+    coverImageLocalPath = req.files?.coverImage[0]?.path;
+  }
   // validation for required field of avatar
   if (!avatarLocalPath) throw new ApiError(400, "Avatar is required");
 
